@@ -6,11 +6,11 @@ import { CategoriasModule } from './categorias/categorias.module';
 @Module({
   imports: [
     JogadoresModule,
+    CategoriasModule,
     MongooseModule.forRoot(
       'mongodb+srv://admin:admin@cluster0.zhlc4.mongodb.net/tenisranking?retryWrites=true&w=majority',
       { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false },
     ),
-    CategoriasModule,
   ],
   controllers: [],
   providers: [],
