@@ -4,7 +4,7 @@ import {
   PipeTransform,
 } from '@nestjs/common';
 
-export class JogadoresValidacaoParametrosPipes implements PipeTransform {
+export class ValidacaoParametrosPipes implements PipeTransform {
   transform(value: any, metadata: ArgumentMetadata) {
     if (!value) {
       throw new BadRequestException(

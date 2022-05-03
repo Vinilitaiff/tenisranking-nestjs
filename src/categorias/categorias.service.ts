@@ -110,4 +110,17 @@ export class CategoriasService {
       .findOneAndUpdate({ categoria }, { $set: categoriaEncontrada })
       .exec();
   }
+
+  async buscarCategoriaDoJogador(idJogador: string): Promise<Categoria> {
+    const categoriaJogador = await this.categoriaModel
+      .findOne()
+      .where('jogadores')
+      .in([idJogador])
+      .exec();
+
+    if (!categoriaJogador)
+      throw new NotFoundException('Categoria não encontrada');
+
+    return categoriaJogador;
+  }
 }

@@ -55,6 +55,19 @@ export class JogadoresService {
     return jogadorEncontrado;
   }
 
+  async consultarJogadoresPorIds(ids: string[]): Promise<Jogador[]> {
+    const jogadores = await this.jogadorModel
+      .find({ _id: { $in: ids } })
+      .exec();
+
+    if (!jogadores || jogadores.length < ids.length)
+      throw new BadRequestException(
+        'Não foi possível encontrar todos os jogadores. Verifique o id e tente novamente',
+      );
+
+    return jogadores;
+  }
+
   async deletarJogador(_id: string): Promise<any> {
     return await this.jogadorModel.deleteOne({ _id }).exec();
   }
